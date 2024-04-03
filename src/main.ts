@@ -8,19 +8,36 @@ const equals = document.querySelector("#calcButtonEquals")!;
 const float = document.querySelector("#calcButtonFloat")!;
 //variables needed to reset and initiate display value to be used when calculating later on
 let currentValue = "0";
+let storedValue = "0";
 const noValue = "0";
+
 
 console.log(del);
 //created the function that will trigger with any button press, and display whatever is inside the html for the user to see what is happening whilst also storing it to the current value function
 const buttonClick: any = (event: typeof buttonClick) => {
   if (currentValue == "0") {
-    display.innerHTML = event.target.innerText;
-    currentValue = display.innerHTML;
+    display.innerHTML += event.target.innerText;
+    storedValue = display.innerHTML;
   } else {
     display.innerHTML += event.target.innerText;
     currentValue = display.innerHTML;
   }
 };
+
+const equalsClicked = () =>{
+  if (storedValue == "0") {
+    display.innerHTML == currentValue
+  } else {
+    display.innerHTML = storedValue + currentValue
+  }
+}
+const delClicked = () => {
+  if (currentValue == "0") {
+    currentValue = display.innerHTML;
+  } else {
+    display.innerHTML = storedValue;
+  }
+}
 
 const delAllClicked = () => {
   currentValue = "0";
@@ -37,3 +54,5 @@ operatorButtons.forEach((operatorButton) => {
 });
 
 delAll.addEventListener("click", delAllClicked);
+
+equals.addEventListener("click", equalsClicked)
