@@ -10,4 +10,11 @@ const float = document.querySelector("#calcButtonFloat")!;
 let currentValue = "0";
 const noValue = "0";
 
-console.log(del)
+console.log(del);
+
+const delAllClicked = () => {
+  currentValue = "0";
+  return (display.innerHTML = noValue);
+};
+
+delAll.addEventListener("click", delAllClicked);
