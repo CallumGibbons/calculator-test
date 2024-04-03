@@ -1,5 +1,6 @@
 //all necessary DOM variables using query selectors to appropriate classes and or IDs
 const numberButtons = document.querySelectorAll(".number")!;
+const addButton = document.querySelector("#calcButtonAdd")
 const operatorButtons = document.querySelectorAll(".operator")!;
 const display = document.querySelector("#display")!;
 const delAll = document.querySelector("#calcButtonDelAll")!;
@@ -7,8 +8,8 @@ const del = document.querySelector("#calcButtonDel")!;
 const equals = document.querySelector("#calcButtonEquals")!;
 const float = document.querySelector("#calcButtonFloat")!;
 //variables needed to reset and initiate display value to be used when calculating later on
-let currentValue = "0";
-let storedValue = "0";
+let currentValue: string | number = "0";
+let storedValue: number = "0";
 const noValue = "0";
 
 
@@ -17,18 +18,25 @@ console.log(del);
 const buttonClick: any = (event: typeof buttonClick) => {
   if (currentValue == "0") {
     display.innerHTML += event.target.innerText;
-    storedValue = display.innerHTML;
+    noValue = display.innerHTML;
   } else {
     display.innerHTML += event.target.innerText;
     currentValue = display.innerHTML;
   }
 };
 
+const addClicked = () => {
+  if (sum(currentValue + storedValue) == "0" {
+
+  }
+}
+
 const equalsClicked = () =>{
-  if (storedValue == "0") {
-    display.innerHTML == currentValue
+  if (currentValue == "0") {
+    display.innerHTML = currentValue
   } else {
-    display.innerHTML = storedValue + currentValue
+    storedValue = currentValue
+    display.innerHTML = currentValue
   }
 }
 const delClicked = () => {
