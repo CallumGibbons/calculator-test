@@ -119,6 +119,7 @@ const equalsClicked = () => {
     storedValue = (storedValue * (storedValue*currentValue));
     console.log(storedValue);
     currentValue = noValue;
+    currentIndices = 0 ;
     currentOperator = "";
     display.innerHTML = storedValue.toString();
     console.log(currentValue);
