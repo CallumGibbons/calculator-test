@@ -36,44 +36,34 @@ const equalsClicked = () => {
     storedValue = currentValue + storedValue;
     console.log(storedValue);
     currentValue = noValue;
+    lastOperator == "+";
     currentOperator = "";
     display.innerHTML = storedValue.toString();
-    console.log(currentValue);
-    console.log(storedValue);
   } else if (currentOperator == "-") {
-    storedValue = storedValue - currentValue;
+    storedValue = storedValue-currentValue;
     console.log(storedValue);
     currentValue = noValue;
     currentOperator = "";
     display.innerHTML = storedValue.toString();
-    console.log(currentValue);
-    console.log(storedValue);
   } else if (currentOperator == "x") {
     storedValue = storedValue * currentValue;
-    console.log(storedValue);
     currentValue = noValue;
     currentOperator = "";
     display.innerHTML = storedValue.toString();
-    console.log(currentValue);
-    console.log(storedValue);
   } else if (currentOperator == "/") {
     storedValue = storedValue / currentValue;
     console.log(storedValue);
     currentValue = noValue;
     currentOperator = "";
     display.innerHTML = storedValue.toString();
-    console.log(currentValue);
-    console.log(storedValue);
   } else if (currentOperator == "^") {
-    storedValue = storedValue * (storedValue * currentValue);
+    storedValue = storedValue*(storedValue*currentValue);
     console.log(storedValue);
     currentValue = noValue;
-    currentIndices = 0;
     currentOperator = "";
     display.innerHTML = storedValue.toString();
-    console.log(currentValue);
-    console.log(storedValue);
   } else if (currentOperator == "") {
+    storedValue = currentValue;
     display.innerHTML = storedValue.toString()
   }else {
     storedValue = currentValue;
@@ -81,10 +71,8 @@ const equalsClicked = () => {
   }
 };
 const addClicked = () => {
-  lastOperator = currentOperator
   currentOperator = "+"
-  if (lastOperator != "") {
-    lastOperator = currentOperator
+  if (lastOperator !== "") {
     return equalsClicked()
   }
   if (storedValue == 0) {
@@ -92,27 +80,25 @@ const addClicked = () => {
   }
   currentValue = noValue;
   display.innerHTML = "";
+  return equalsClicked
 };
 
 const subtractButtonClicked = () => {
-  lastOperator = currentOperator;
-  if (lastOperator != "") {
+    if (lastOperator !== "") {
+      currentOperator = "-";
+    }
+    lastOperator = currentOperator;
     currentOperator = "-";
-    return equalsClicked();
-  }else if (storedValue == 0) {
-    storedValue = currentValue;
-  }
-  else {
-  currentOperator = "-";
-  currentValue = noValue;
-  display.innerHTML = "";
-}
-};
+    if (storedValue == 0) {
+      storedValue = currentValue;
+    }
+    currentValue = noValue;
+    display.innerHTML = "";
+  };
 
 const multiplyClicked = () => {
-  if (lastOperator != "") {
+  if (lastOperator !== "") {
     currentOperator = "x";
-    return equalsClicked();
   }
   currentOperator = "x";
   lastOperator = currentOperator;
@@ -124,9 +110,8 @@ const multiplyClicked = () => {
 };
 
 const divideClicked = () => {
-  if (lastOperator != "") {
+  if (lastOperator !== "") {
     currentOperator = "/";
-    return equalsClicked();
   }
   lastOperator = currentOperator;
   currentOperator = "/";
@@ -138,9 +123,8 @@ const divideClicked = () => {
 };
 
 const indicesClicked = () => {
-  if (lastOperator != "") {
+  if (lastOperator !== "") {
     currentOperator = "^";
-    return equalsClicked();
   }
   lastOperator = currentOperator;
   currentOperator = "^";
