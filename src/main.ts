@@ -73,18 +73,20 @@ const equalsClicked = () => {
     display.innerHTML = storedValue.toString();
     console.log(currentValue);
     console.log(storedValue);
-  } else {
+  } else if (currentOperator == "") {
+    display.innerHTML = storedValue.toString()
+  }else {
     storedValue = currentValue;
     display.innerHTML = storedValue.toString();
   }
 };
 const addClicked = () => {
+  lastOperator = currentOperator
+  currentOperator = "+"
   if (lastOperator != "") {
-    currentOperator = lastOperator
-    return equalsClicked();
+    lastOperator = currentOperator
+    return equalsClicked()
   }
-  lastOperator = currentOperator;
-  currentOperator = "+";
   if (storedValue == 0) {
     storedValue = currentValue;
   }
@@ -93,17 +95,18 @@ const addClicked = () => {
 };
 
 const subtractButtonClicked = () => {
+  lastOperator = currentOperator;
   if (lastOperator != "") {
     currentOperator = "-";
     return equalsClicked();
-  }
-  lastOperator = currentOperator;
-  currentOperator = "-";
-  if (storedValue == 0) {
+  }else if (storedValue == 0) {
     storedValue = currentValue;
   }
+  else {
+  currentOperator = "-";
   currentValue = noValue;
   display.innerHTML = "";
+}
 };
 
 const multiplyClicked = () => {
@@ -111,12 +114,12 @@ const multiplyClicked = () => {
     currentOperator = "x";
     return equalsClicked();
   }
-  lastOperator = currentOperator;
   currentOperator = "x";
+  lastOperator = currentOperator;
   if (storedValue == 0) {
     storedValue = currentValue;
   }
-  currentValue = noValue;
+  currentValue = storedValue;
   display.innerHTML = "";
 };
 
