@@ -80,7 +80,8 @@ const equalsClicked = () => {
 };
 const addClicked = () => {
   if (lastOperator != "") {
-    return equalsClicked;
+    currentOperator = lastOperator
+    return equalsClicked();
   }
   lastOperator = currentOperator;
   currentOperator = "+";
@@ -92,6 +93,10 @@ const addClicked = () => {
 };
 
 const subtractButtonClicked = () => {
+  if (lastOperator != "") {
+    currentOperator = "-";
+    return equalsClicked();
+  }
   lastOperator = currentOperator;
   currentOperator = "-";
   if (storedValue == 0) {
@@ -102,6 +107,10 @@ const subtractButtonClicked = () => {
 };
 
 const multiplyClicked = () => {
+  if (lastOperator != "") {
+    currentOperator = "x";
+    return equalsClicked();
+  }
   lastOperator = currentOperator;
   currentOperator = "x";
   if (storedValue == 0) {
@@ -112,6 +121,10 @@ const multiplyClicked = () => {
 };
 
 const divideClicked = () => {
+  if (lastOperator != "") {
+    currentOperator = "/";
+    return equalsClicked();
+  }
   lastOperator = currentOperator;
   currentOperator = "/";
   if (storedValue == 0) {
@@ -122,6 +135,10 @@ const divideClicked = () => {
 };
 
 const indicesClicked = () => {
+  if (lastOperator != "") {
+    currentOperator = "^";
+    return equalsClicked();
+  }
   lastOperator = currentOperator;
   currentOperator = "^";
   if (storedValue == 0) {
