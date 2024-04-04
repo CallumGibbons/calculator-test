@@ -46,6 +46,9 @@ div.buttons_container {
     button:hover {
       transform: scale(0.75);
     }
+    buttom:active {
+      transform: scale(0.65); 
+    }
   }
 }
 div.display_container {
