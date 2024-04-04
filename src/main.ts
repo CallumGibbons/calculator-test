@@ -1,12 +1,14 @@
 //all necessary DOM variables using query selectors to appropriate classes and or IDs
 const numberButtons = document.querySelectorAll(".number")!;
 const addButton = document.querySelector("#calcButtonAdd");
+const subtractButton = document.querySelector("#calcButtonSubtract")
 const operatorButtons = document.querySelectorAll(".operator")!;
 const display = document.querySelector("#display")!;
 const delAll = document.querySelector("#calcButtonDelAll")!;
 const del = document.querySelector("#calcButtonDel")!;
 const equals = document.querySelector("#calcButtonEquals")!;
 const float = document.querySelector("#calcButtonFloat")!;
+const multiplyButton = document.querySelector("#calcButtonMultiply")
 //variables needed to reset and initiate display value to be used when calculating later on
 let lastOperator: string = "";
 let currentOperator: string = "";
@@ -30,36 +32,74 @@ const buttonClick: any = (event: typeof buttonClick) => {
 const addClicked = () => {
   lastOperator = currentOperator;
   currentOperator = "+";
-  storedValue = currentValue;
+  if (storedValue == 0) {
+    storedValue = currentValue;
+  }
   currentValue = noValue;
   display.innerHTML = currentValue.toString();
 };
 
+const subtractButtonClicked = () => {
+  lastOperator = currentOperator;
+  currentOperator = "-";
+  if (storedValue == 0) {
+    storedValue = currentValue;
+  }
+  currentValue = noValue;
+  display.innerHTML = currentValue.toString();
+};
+
+const multiplyClicked = () => {
+  lastOperator = currentOperator;
+  currentOperator = "x";
+  if (storedValue == 0) {
+    storedValue = currentValue;
+  }
+  currentValue = noValue;
+  display.innerHTML = currentValue.toString();
+}
+
 const equalsClicked = () => {
-  if (currentValue == 0) {
-    display.innerHTML = currentValue.toString();
-  } else if (currentOperator == "+") {
+if (currentOperator == "+") {
     storedValue = currentValue + storedValue;
     console.log(storedValue);
     currentValue = noValue;
     currentOperator = "";
     display.innerHTML = storedValue.toString();
     console.log(currentValue);
-  } else {
+    console.log(storedValue)
+  } else if (currentOperator == "-") {
+    storedValue = storedValue - currentValue;
+    console.log(storedValue);
+    currentValue = noValue;
+    currentOperator = "";
+    display.innerHTML = storedValue.toString();
+    console.log(currentValue);
+    console.log(storedValue)
+} else if (currentOperator == "x") {
+  storedValue = storedValue * currentValue;
+  console.log(storedValue);
+  currentValue = noValue;
+  currentOperator = "";
+  display.innerHTML = storedValue.toString();
+  console.log(currentValue);
+  console.log(storedValue)
+} else {
     storedValue = currentValue;
     display.innerHTML = storedValue.toString();
   }
 };
 const delClicked = () => {
   if (currentValue == 0) {
-    currentValue = parseFloat(display.innerHTML);
+    display.innerHTML = currentValue.toString();
   } else {
     display.innerHTML = storedValue.toString();
   }
 };
 
 const delAllClicked = () => {
-  currentValue = 0;
+  storedValue = noValue;
+  currentValue = noValue;
   return (display.innerHTML = noValue.toString());
 };
 
@@ -71,8 +111,14 @@ operatorButtons.forEach((operatorButton) => {
   operatorButton.addEventListener("click", buttonClick);
 });
 
+del.addEventListener("click", delClicked)
+
 delAll.addEventListener("click", delAllClicked);
 
 equals.addEventListener("click", equalsClicked);
 
-addButton.addEventListener("click", addClicked);
+addButton?.addEventListener("click", addClicked);
+
+subtractButton?.addEventListener("click", subtractButtonClicked)
+
+multiplyButton?.addEventListener("click", multiplyClicked)
