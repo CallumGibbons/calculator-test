@@ -1,19 +1,22 @@
 //all necessary DOM variables using query selectors to appropriate classes and or IDs
 const numberButtons = document.querySelectorAll(".number")!;
-const addButton = document.querySelector("#calcButtonAdd");
-const subtractButton = document.querySelector("#calcButtonSubtract")
 const operatorButtons = document.querySelectorAll(".operator")!;
+const addButton = document.querySelector("#calcButtonAdd");
+const subtractButton = document.querySelector("#calcButtonSubtract");
+const multiplyButton = document.querySelector("#calcButtonMultiply");
+const divideButton = document.querySelector("#calcButtonDivide");
+const indicesButton = document.querySelector("#calcButtonIndices");
 const display = document.querySelector("#display")!;
 const delAll = document.querySelector("#calcButtonDelAll")!;
 const del = document.querySelector("#calcButtonDel")!;
 const equals = document.querySelector("#calcButtonEquals")!;
 const float = document.querySelector("#calcButtonFloat")!;
-const multiplyButton = document.querySelector("#calcButtonMultiply")
 //variables needed to reset and initiate display value to be used when calculating later on
 let lastOperator: string = "";
 let currentOperator: string = "";
 let currentValue: number = 0;
 let storedValue: number = 0;
+let currentIndices: number = 0;
 const noValue = 0;
 
 console.log(del);
@@ -57,17 +60,37 @@ const multiplyClicked = () => {
   }
   currentValue = noValue;
   display.innerHTML = currentValue.toString();
-}
+};
+
+const divideClicked = () => {
+  lastOperator = currentOperator;
+  currentOperator = "/";
+  if (storedValue == 0) {
+    storedValue = currentValue;
+  }
+  currentValue = noValue;
+  display.innerHTML = currentValue.toString();
+};
+
+const indicesClicked = () => {
+  lastOperator = currentOperator;
+  currentOperator = "^";
+  if (storedValue == 0) {
+    storedValue = currentValue;
+  }
+  currentValue = noValue;
+  display.innerHTML = currentValue.toString();
+};
 
 const equalsClicked = () => {
-if (currentOperator == "+") {
+  if (currentOperator == "+") {
     storedValue = currentValue + storedValue;
     console.log(storedValue);
     currentValue = noValue;
     currentOperator = "";
     display.innerHTML = storedValue.toString();
     console.log(currentValue);
-    console.log(storedValue)
+    console.log(storedValue);
   } else if (currentOperator == "-") {
     storedValue = storedValue - currentValue;
     console.log(storedValue);
@@ -75,16 +98,32 @@ if (currentOperator == "+") {
     currentOperator = "";
     display.innerHTML = storedValue.toString();
     console.log(currentValue);
-    console.log(storedValue)
-} else if (currentOperator == "x") {
-  storedValue = storedValue * currentValue;
-  console.log(storedValue);
-  currentValue = noValue;
-  currentOperator = "";
-  display.innerHTML = storedValue.toString();
-  console.log(currentValue);
-  console.log(storedValue)
-} else {
+    console.log(storedValue);
+  } else if (currentOperator == "x") {
+    storedValue = storedValue * currentValue;
+    console.log(storedValue);
+    currentValue = noValue;
+    currentOperator = "";
+    display.innerHTML = storedValue.toString();
+    console.log(currentValue);
+    console.log(storedValue);
+  } else if (currentOperator == "/") {
+    storedValue = (storedValue/currentValue);
+    console.log(storedValue);
+    currentValue = noValue;
+    currentOperator = "";
+    display.innerHTML = storedValue.toString();
+    console.log(currentValue);
+    console.log(storedValue);
+  } else if (currentOperator == "^") {
+    storedValue = (storedValue * (storedValue*currentValue));
+    console.log(storedValue);
+    currentValue = noValue;
+    currentOperator = "";
+    display.innerHTML = storedValue.toString();
+    console.log(currentValue);
+    console.log(storedValue);
+  }else {
     storedValue = currentValue;
     display.innerHTML = storedValue.toString();
   }
@@ -111,7 +150,7 @@ operatorButtons.forEach((operatorButton) => {
   operatorButton.addEventListener("click", buttonClick);
 });
 
-del.addEventListener("click", delClicked)
+del.addEventListener("click", delClicked);
 
 delAll.addEventListener("click", delAllClicked);
 
@@ -119,6 +158,10 @@ equals.addEventListener("click", equalsClicked);
 
 addButton?.addEventListener("click", addClicked);
 
-subtractButton?.addEventListener("click", subtractButtonClicked)
+subtractButton?.addEventListener("click", subtractButtonClicked);
 
-multiplyButton?.addEventListener("click", multiplyClicked)
+multiplyButton?.addEventListener("click", multiplyClicked);
+
+divideButton?.addEventListener("click", divideClicked);
+
+indicesButton?.addEventListener("click", indicesClicked);
