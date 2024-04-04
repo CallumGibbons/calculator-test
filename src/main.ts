@@ -31,57 +31,6 @@ const buttonClick: any = (event: typeof buttonClick) => {
     currentValue = parseFloat(display.innerHTML);
   }
 };
-
-const addClicked = () => {
-  lastOperator = currentOperator;
-  currentOperator = "+";
-  if (storedValue == 0) {
-    storedValue = currentValue;
-  }
-  currentValue = noValue;
-  display.innerHTML = currentValue.toString();
-};
-
-const subtractButtonClicked = () => {
-  lastOperator = currentOperator;
-  currentOperator = "-";
-  if (storedValue == 0) {
-    storedValue = currentValue;
-  }
-  currentValue = noValue;
-  display.innerHTML = currentValue.toString();
-};
-
-const multiplyClicked = () => {
-  lastOperator = currentOperator;
-  currentOperator = "x";
-  if (storedValue == 0) {
-    storedValue = currentValue;
-  }
-  currentValue = noValue;
-  display.innerHTML = currentValue.toString();
-};
-
-const divideClicked = () => {
-  lastOperator = currentOperator;
-  currentOperator = "/";
-  if (storedValue == 0) {
-    storedValue = currentValue;
-  }
-  currentValue = noValue;
-  display.innerHTML = currentValue.toString();
-};
-
-const indicesClicked = () => {
-  lastOperator = currentOperator;
-  currentOperator = "^";
-  if (storedValue == 0) {
-    storedValue = currentValue;
-  }
-  currentValue = noValue;
-  display.innerHTML = currentValue.toString();
-};
-
 const equalsClicked = () => {
   if (currentOperator == "+") {
     storedValue = currentValue + storedValue;
@@ -108,7 +57,7 @@ const equalsClicked = () => {
     console.log(currentValue);
     console.log(storedValue);
   } else if (currentOperator == "/") {
-    storedValue = (storedValue/currentValue);
+    storedValue = storedValue / currentValue;
     console.log(storedValue);
     currentValue = noValue;
     currentOperator = "";
@@ -116,19 +65,72 @@ const equalsClicked = () => {
     console.log(currentValue);
     console.log(storedValue);
   } else if (currentOperator == "^") {
-    storedValue = (storedValue * (storedValue*currentValue));
+    storedValue = storedValue * (storedValue * currentValue);
     console.log(storedValue);
     currentValue = noValue;
-    currentIndices = 0 ;
+    currentIndices = 0;
     currentOperator = "";
     display.innerHTML = storedValue.toString();
     console.log(currentValue);
     console.log(storedValue);
-  }else {
+  } else {
     storedValue = currentValue;
     display.innerHTML = storedValue.toString();
   }
 };
+const addClicked = () => {
+  if (lastOperator != "") {
+    return equalsClicked;
+  }
+  lastOperator = currentOperator;
+  currentOperator = "+";
+  if (storedValue == 0) {
+    storedValue = currentValue;
+  }
+  currentValue = noValue;
+  display.innerHTML = "";
+};
+
+const subtractButtonClicked = () => {
+  lastOperator = currentOperator;
+  currentOperator = "-";
+  if (storedValue == 0) {
+    storedValue = currentValue;
+  }
+  currentValue = noValue;
+  display.innerHTML = "";
+};
+
+const multiplyClicked = () => {
+  lastOperator = currentOperator;
+  currentOperator = "x";
+  if (storedValue == 0) {
+    storedValue = currentValue;
+  }
+  currentValue = noValue;
+  display.innerHTML = "";
+};
+
+const divideClicked = () => {
+  lastOperator = currentOperator;
+  currentOperator = "/";
+  if (storedValue == 0) {
+    storedValue = currentValue;
+  }
+  currentValue = noValue;
+  display.innerHTML = "";
+};
+
+const indicesClicked = () => {
+  lastOperator = currentOperator;
+  currentOperator = "^";
+  if (storedValue == 0) {
+    storedValue = currentValue;
+  }
+  currentValue = noValue;
+  display.innerHTML = "";
+};
+
 const delClicked = () => {
   if (currentValue == 0) {
     display.innerHTML = currentValue.toString();
